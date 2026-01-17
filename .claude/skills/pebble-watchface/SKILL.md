@@ -509,6 +509,48 @@ pebble screenshot --emulator basalt # Capture screen
 pebble install --cloudpebble        # Deploy to device
 ```
 
+### Emulator Interaction Commands
+
+**Button Presses** (`pebble emu-button`):
+Press buttons on the emulator for testing interactive watchfaces/apps.
+
+```bash
+# Click a button (press + release)
+pebble emu-button click select --emulator basalt
+
+# Long press (2 seconds)
+pebble emu-button click back --duration 2000 --emulator basalt
+
+# Repeat clicks (e.g., scroll down 5 times)
+pebble emu-button click down --repeat 5 --emulator basalt
+
+# Hold button down
+pebble emu-button push up --emulator basalt
+
+# Release all buttons
+pebble emu-button release --emulator basalt
+```
+
+Options:
+- `--duration / -d` - Duration in ms for click (default: 100)
+- `--repeat / -n` - Number of times to repeat (default: 1)
+- `--interval / -i` - Interval in ms between repeats (default: 200)
+
+Buttons: `back`, `up`, `select`, `down`
+
+**NOTE**: On watchfaces, `select` opens the launcher and `up`/`down` open timeline. Use `accel_tap_service_subscribe()` for shake-to-interact instead of buttons.
+
+**Accelerometer Tap** (`pebble emu-tap`):
+Simulate shake/tap gestures for watchfaces that use accelerometer input.
+
+```bash
+# Simulate a tap/shake
+pebble emu-tap --emulator basalt
+
+# Multiple taps (e.g., water a plant 13 times)
+for i in {1..13}; do pebble emu-tap --emulator basalt; sleep 0.3; done
+```
+
 ---
 
 ## Constraints
