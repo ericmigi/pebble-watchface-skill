@@ -274,6 +274,10 @@ static void update_vine_swing(Monkey *m) {
     // Tarzan swing: swing back, swing forward, RELEASE, fly, CATCH next vine
     int progress = (m->anim.frame * 100) / VINE_SWING_FRAMES;
 
+    // Bounds check vine_index
+    if (m->anim.vine_index < 0) m->anim.vine_index = 0;
+    if (m->anim.vine_index >= NUM_VINES) m->anim.vine_index = NUM_VINES - 1;
+
     Vine *vine = &s_vines[m->anim.vine_index];
     int next_idx = m->anim.vine_index + m->direction;
     if (next_idx < 0 || next_idx >= NUM_VINES) {
@@ -340,6 +344,10 @@ static void update_climb_vine(Monkey *m) {
     // Climb up or down the vine
     int progress = (m->anim.frame * 100) / CLIMB_FRAMES;
 
+    // Bounds check vine_index
+    if (m->anim.vine_index < 0) m->anim.vine_index = 0;
+    if (m->anim.vine_index >= NUM_VINES) m->anim.vine_index = NUM_VINES - 1;
+
     Vine *vine = &s_vines[m->anim.vine_index];
 
     // Climb direction stored in anim.rotation sign
@@ -367,6 +375,10 @@ static void update_hang_look(Monkey *m) {
     // Hang on vine and look around
     int progress = (m->anim.frame * 100) / HANG_LOOK_FRAMES;
 
+    // Bounds check vine_index
+    if (m->anim.vine_index < 0) m->anim.vine_index = 0;
+    if (m->anim.vine_index >= NUM_VINES) m->anim.vine_index = NUM_VINES - 1;
+
     Vine *vine = &s_vines[m->anim.vine_index];
 
     // Gentle sway
@@ -392,6 +404,10 @@ static void update_tail_hang(Monkey *m) {
     // Hang upside down by tail from branch
     int progress = (m->anim.frame * 100) / TAIL_HANG_FRAMES;
 
+    // Bounds check branch_index
+    if (m->anim.branch_index < 0) m->anim.branch_index = 0;
+    if (m->anim.branch_index >= NUM_BRANCHES) m->anim.branch_index = NUM_BRANCHES - 1;
+
     Branch *branch = &s_branches[m->anim.branch_index];
     int mid_x = (branch->start.x + branch->end.x) / 2;
     int mid_y = (branch->start.y + branch->end.y) / 2;
@@ -410,6 +426,10 @@ static void update_tail_hang(Monkey *m) {
 static void update_sit_munch(Monkey *m) {
     // Sit on branch and munch an apple
     int progress = (m->anim.frame * 100) / SIT_MUNCH_FRAMES;
+
+    // Bounds check branch_index
+    if (m->anim.branch_index < 0) m->anim.branch_index = 0;
+    if (m->anim.branch_index >= NUM_BRANCHES) m->anim.branch_index = NUM_BRANCHES - 1;
 
     Branch *branch = &s_branches[m->anim.branch_index];
 
@@ -557,6 +577,10 @@ static void select_next_trick(Monkey *m) {
     m->anim.start_pos = m->pos;
     m->anim.frame = 0;
     m->anim.rotation = 0;
+
+    // Bounds check vine_index first
+    if (m->anim.vine_index < 0) m->anim.vine_index = 0;
+    if (m->anim.vine_index >= NUM_VINES) m->anim.vine_index = NUM_VINES - 1;
 
     // Bounce direction at edges
     if (m->anim.vine_index <= 0) m->direction = 1;
@@ -802,7 +826,7 @@ static void draw_monkey(GContext *ctx, Monkey *m) {
         // Hands grip the vine - directly above the monkey
         grip_point.x = x;
         grip_point.y = y - 18;  // Just above the monkey's head
-    } else if (hanging_upside_down && m->anim.branch_index >= 0) {
+    } else if (hanging_upside_down && m->anim.branch_index >= 0 && m->anim.branch_index < NUM_BRANCHES) {
         // Feet grip branch above
         Branch *branch = &s_branches[m->anim.branch_index];
         grip_point.x = x;
