@@ -4,16 +4,20 @@
   "version": "1.0.0",
   "keywords": ["pebble-app"],
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@moddable/pebbleproxy": "^0.1.8"
+  },
   "pebble": {
     "displayName": "{{WATCHFACE_DISPLAY_NAME}}",
     "uuid": "{{UUID}}",
+    "projectType": "moddable",
     "sdkVersion": "3",
-    "enableMultiJS": false,
-    "targetPlatforms": ["aplite", "basalt", "chalk", "diorite"],
+    "enableMultiJS": true,
+    "targetPlatforms": ["emery", "gabbro"],
     "watchapp": {
       "watchface": true
     },
+    "messageKeys": [],
     "resources": {
       "media": []
     }

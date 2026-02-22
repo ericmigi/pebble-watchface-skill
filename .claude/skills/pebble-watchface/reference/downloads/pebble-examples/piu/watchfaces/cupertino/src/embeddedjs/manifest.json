@@ -1,0 +1,30 @@
+{
+	"config": {
+		"icon": "./icon.png",
+		"watchface": true
+	},
+	"modules": {
+		"*": "./main.js"
+	},
+	"resources": {
+		"*": [
+			"./hours",
+			"./minutes"
+		]
+	},
+	"platforms": {
+		"*/flint": {
+			"resources": {
+				"*-color": "./flint/dial"
+			}
+		},
+		"*/emery": {
+			"resources": {
+				"*-color": "./emery/dial"
+			}
+		},
+		"...": {
+			"error": "Platform not supported"
+		}
+	}
+}
