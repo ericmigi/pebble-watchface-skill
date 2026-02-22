@@ -1,0 +1,72 @@
+{
+	"include":  [
+		"$(MODDABLE)/examples/manifest_mod.json"
+	],
+	"config": {
+		"icon": "./icon.png",
+		"network": true,
+		"watchface": true
+	},
+	"modules": {
+		"*": "./main.js"
+	},
+	"resources": {
+		"*-alpha": [
+			{
+				"source": "$(MODDABLE)/examples/assets/scalablefonts/OpenSans/OpenSans-Bold",
+				"size": 64, "characters": "0123456789:"
+			},
+			{
+				"source": "$(MODDABLE)/examples/assets/scalablefonts/OpenSans/OpenSans-Bold",
+				"size": 56, "characters": "0123456789:"
+			},
+			{
+				"source": "$(MODDABLE)/examples/assets/scalablefonts/OpenSans/OpenSans-Bold",
+				"size": 48, "characters": "0123456789:"
+			},
+			{
+				"source": "$(MODDABLE)/examples/assets/scalablefonts/OpenSans/OpenSans-Bold",
+				"size": 40, "characters": "0123456789:"
+			},
+			{
+				"source": "$(MODDABLE)/examples/assets/scalablefonts/OpenSans/OpenSans-Bold",
+				"size": 32, "characters": "0123456789:"
+			}
+		]
+	},
+	"platforms": {
+		"pebble/flint": {
+			"modules": {
+				"behavior": "./flint/device"
+			}
+		},
+		"pebble/emery": {
+			"modules": {
+				"behavior": "./emery/device"
+			}
+		},
+		"qemu/flint": {
+			"modules": {
+				"behavior": "./flint/device"
+			}
+		},
+		"qemu/emery": {
+			"modules": {
+				"behavior": "./emery/device"
+			}
+		},
+		"mac/flint": {
+			"modules": {
+				"behavior": "./flint/simulator"
+			}
+		},
+		"mac/emery": {
+			"modules": {
+				"behavior": "./emery/simulator"
+			}
+		},
+		"...": {
+			"error": "Platform not supported"
+		}
+	}
+}

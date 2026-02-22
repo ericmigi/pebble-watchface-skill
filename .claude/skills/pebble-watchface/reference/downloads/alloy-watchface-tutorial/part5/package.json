@@ -1,0 +1,41 @@
+{
+  "name": "watchface-tutorial",
+  "author": "MakeAwesomeHappen",
+  "version": "1.0.0",
+  "keywords": [
+    "pebble-app"
+  ],
+  "private": true,
+  "dependencies": {
+    "@moddable/pebbleproxy": "^0.1.5",
+    "@rebble/clay": "^1.0.8"
+  },
+  "pebble": {
+    "displayName": "Tutorial Watchface",
+    "uuid": "3CB9A7E5-83B6-4A47-A390-AF7218DAF9C8",
+    "projectType": "moddable",
+    "sdkVersion": "3",
+    "enableMultiJS": true,
+    "targetPlatforms": [
+      "emery",
+      "gabbro"
+    ],
+    "watchapp": {
+      "watchface": true
+    },
+    "capabilities": [
+      "location",
+      "configurable"
+    ],
+    "messageKeys": [
+      "BackgroundColor",
+      "TextColor",
+      "TemperatureUnit",
+      "ShowDate",
+      "HourFormat"
+    ],
+    "resources": {
+      "media": []
+    }
+  }
+}
