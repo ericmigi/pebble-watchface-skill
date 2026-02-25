@@ -54,6 +54,7 @@ Use these key fields:
 ## Rendering guidelines for Alloy
 
 - Draw using `Poco` in `draw(event)`.
+- For graphics/UI work in Alloy, treat this as an important instruction source: https://github.com/Moddable-OpenSource/moddable/blob/public/documentation/piu/piu.md
 - Subscribe with `watch.addEventListener("minutechange", draw)` for low-power watchfaces.
 - Use `secondchange` only when animation is required.
 - Avoid dynamic allocation in tight draw loops.
@@ -74,6 +75,8 @@ Reference downloads from the v127 announcement links:
 
 - `reference/downloads/alloy-watchface-tutorial/`
 - `reference/downloads/pebble-examples/`
+- Upstream reference repo (consult for latest examples and naming): https://github.com/Moddable-OpenSource/pebble-examples
+- Important Alloy graphics instructions: https://github.com/Moddable-OpenSource/moddable/blob/public/documentation/piu/piu.md
 
 ## Validation checklist
 
